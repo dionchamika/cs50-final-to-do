@@ -26,7 +26,7 @@ Python 3.x
 Flask
 SQLite
 Installation
-Clone the repository: git clone https://github.com/dionchamika/cs50-final.git
+Clone the repository: git clone https://github.com/dionchamika/cs50-final-to-do.git
 Navigate to the project directory: cd your-project
 Install dependencies: pip install -r requirements.txt
 Run the application: python app.py
