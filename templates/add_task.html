@@ -1,0 +1,18 @@
+<!-- templates/add_task.html -->
+{% extends "layout.html" %}
+
+{% block title %}Add Task{% endblock %}
+
+{% block main %}
+    <h1>Add Task</h1>
+
+    <!-- Add Task Form -->
+    <form method="post" action="/add_task">
+        <label for="task_text">Task:</label>
+        <input type="text" name="task_text" required>
+        <p></p>
+        <button type="submit">Add Task</button>
+    </form>
+    <p></p>
+    <p><a href="{{ url_for('tasks') }}">Back to Tasks</a></p>
+{% endblock %}

@@ -1,0 +1,29 @@
+<!-- templates/completed_tasks.html -->
+
+{% extends "layout.html" %}
+
+{% block title %}Completed Tasks{% endblock %}
+
+{% block main %}
+    <h2>Completed Tasks</h2>
+    <table class="completed-task-table">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Completed On</th>
+                <th>Action</th> <!-- New column for actions -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in completed_tasks %}
+                <tr>
+                    <td class="task-text">{{ task.task_text }}</td>
+                    <td>{{ task.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                    <td>
+                        <a href="{{ url_for('delete_task_page_completed', task_id=task.id) }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

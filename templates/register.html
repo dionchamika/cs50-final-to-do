@@ -1,0 +1,23 @@
+<!-- templates/register.html -->
+{% extends "layout.html" %}
+
+{% block title %}Register{% endblock %}
+
+{% block main %}
+    <div class="register-container">
+        <h1>Register</h1>
+        {% if message %}
+            <p class="alert alert-danger">{{ message }}</p>
+        {% endif %}
+        <form method="post">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+            <label for="confirmation">Confirm Password:</label>
+            <input type="password" name="confirmation" required><br>
+            <p></p>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!-- templates/delete_task_completed.html -->
+
+{% extends "layout.html" %}
+
+{% block title %}Delete Completed Task{% endblock %}
+
+{% block main %}
+    <h1>Delete Completed Task</h1>
+    {% if message %}
+        <p class="alert alert-danger">{{ message }}</p>
+    {% endif %}
+    <p>Are you sure you want to permanently delete this completed task?</p>
+    <form method="post" action="{{ url_for('delete_task', task_id=task.id, redirect='completed_tasks') }}">
+        <button type="submit">Delete</button>
+        <a href="{{ url_for('completed_tasks') }}">Cancel</a>
+    </form>
+{% endblock %}

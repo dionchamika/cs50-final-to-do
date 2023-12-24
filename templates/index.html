@@ -1,0 +1,12 @@
+<!-- templates/index.html -->
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+    <h1>Welcome to the CS50 To-Do App!</h1>
+
+    {% if not session.user_id %}
+        <p>Please log in or register to continue!</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,80 @@
+<!-- templates/tasks.html -->
+{% extends "layout.html" %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block main %}
+    <h1>Tasks</h1>
+
+    <h2>Active Tasks</h2>
+    <table class="task-table">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Action</th>
+                <th>Timestamp</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in active_tasks %}
+                <tr>
+                    <td class="task-text">{{ task.task_text }}</td>
+                    <td class="action-column">
+                        <a href="{{ url_for('complete_task', task_id=task.id, redirect='tasks') }}" class="complete-link">Complete</a>
+                    </td>
+                    <td>{{ task.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+
+    <h2>Completed Tasks</h2>
+    <table class="completed-task-table">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Completed On</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in completed_tasks %}
+                <tr>
+                    <td class="task-text">{{ task.task_text }}</td>
+                    <td>{{ task.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Add event listeners to "Complete" links
+            var completeLinks = document.getElementsByClassName("complete-link");
+
+            Array.from(completeLinks).forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    event.preventDefault();
+
+                    // Get the parent row of the clicked link
+                    var row = link.closest("tr");
+
+                    // Add strikethrough style to the task text
+                    var taskText = row.querySelector(".task-text");
+                    taskText.style.textDecoration = "line-through";
+
+                    // Move the completed task to the "Completed Tasks" table
+                    var completedTasksTable = document.querySelector(".completed-task-table tbody");
+                    completedTasksTable.appendChild(row);
+
+                    // Remove the "Complete" link
+                    link.remove();
+                });
+            });
+        });
+    </script>
+{% endblock %}
